@@ -2,8 +2,7 @@
 #include <string.h>
 #include <espressif/esp_common.h>
 
-// #include "action.h"
-// #include "utils.h"
+#include "timer.h"
 #include "config.h"
 #include "relay.h"
 
@@ -22,16 +21,28 @@ void relay(char *data)
 {
     if (strstr((char *)data, (char *)"/relay/1/on")) {
         Relay1.on();
+        add_timer([](){}, 0, PIN_RELAY_1);
     } else if (strstr((char *)data, (char *)"/relay/1/off")) {
         Relay1.off();
+        add_timer([](){}, 0, PIN_RELAY_1);
     } else if (strstr((char *)data, (char *)"/relay/1/toggle")) {
         Relay1.toggle();
+        add_timer([](){}, 0, PIN_RELAY_1);
+    } else if (strstr((char *)data, (char *)"/relay/1/timer")) {
+        Relay1.on();
+        add_timer([](){ Relay1.off(); }, 300, PIN_RELAY_1);
     } else if (strstr((char *)data, (char *)"/relay/2/on")) {
         Relay2.on();
+        add_timer([](){}, 0, PIN_RELAY_2);
     } else if (strstr((char *)data, (char *)"/relay/2/off")) {
         Relay2.off();
+        add_timer([](){}, 0, PIN_RELAY_2);
     } else if (strstr((char *)data, (char *)"/relay/2/toggle")) {
         Relay2.toggle();
+        add_timer([](){}, 0, PIN_RELAY_2);
+    } else if (strstr((char *)data, (char *)"/relay/2/timer")) {
+        Relay2.on();
+        add_timer([](){ Relay2.off(); }, 300, PIN_RELAY_2);
     }
 }
 
