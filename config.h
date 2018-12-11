@@ -2,18 +2,18 @@
 #ifndef __CONFIG_H__
 #define __CONFIG_H__
 
-#define DEVICE_ID "MHB_SWITCH_"
+#define DEVICE_ID "MHB_SONOFF_4CH_"
 #define DEVICE_NAME "test device"
 
 #define WEMOS
 #ifdef WEMOS
-    #define PIN_BUTTON 0 // D3
     #define PIN_LED 2
-    #define PIN_RELAY_1 5 // D1
+    #define PIN_RELAY_1 12
+    #define PIN_RELAY_2 5 // only this one work
 #else
-    #define PIN_BUTTON 0 // D3
     #define PIN_LED 13
     #define PIN_RELAY_1 12
+    #define PIN_RELAY_2 5
 #endif
 
 // https://community.blynk.cc/uploads/default/original/2X/4/4f9e2245bf4f6698e10530b9060595c893bf49a2.png
